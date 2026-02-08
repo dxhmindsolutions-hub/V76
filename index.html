@@ -452,6 +452,27 @@ strong {
     </div>
   </div>
 
+  <!-- MODAL PASSWORD EDIT -->
+<div id="passModal" class="modal">
+  <div class="box">
+    <h3>Modo edición</h3>
+
+    <div style="position:relative;">
+      <input id="passInput" type="password" placeholder="Contraseña">
+      <span id="toggleEye"
+        style="position:absolute; right:12px; top:50%; transform:translateY(-50%); cursor:pointer;">
+        👁️
+      </span>
+    </div>
+
+    <div>
+      <button id="passOk">Entrar</button>
+      <button onclick="closePassModal()" id="cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+  
   <script src="app.js"></script>
 
   <!-- MODAL PARA IMPRESIÓN -->
