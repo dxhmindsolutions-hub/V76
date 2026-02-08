@@ -459,7 +459,7 @@ strong {
 
     <div class="passField">
       <input id="passInput" type="password" placeholder="Contraseña">
-      <button type="button" class="eyeBtn" onclick="togglePassEye()">👁️</button>
+      <button type="button" class="eyeBtn" onclick="togglePassEye()">🔍</button>
     </div>
 
     <div class="passActions">
@@ -528,7 +528,7 @@ strong {
   }
 }
 
-  /* ===== PASSWORD MODAL ===== */
+/* ===== PASSWORD MODAL ===== */
 
 .passBox{
   max-width:360px;
@@ -540,27 +540,34 @@ strong {
 }
 
 .passField input{
-  padding-right:44px;
+  width:100%;
+  padding:12px 48px 12px 12px; /* espacio real para icono */
+  font-size:16px;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
 
 .eyeBtn{
   position:absolute;
-  right:6px;
+  right:8px;
   top:50%;
   transform:translateY(-50%);
-  width:36px;
-  height:36px;
+  width:32px;
+  height:32px;
   border:none;
-  background:#eee;
+  background:#f0f0f0;
   border-radius:8px;
-  font-size:18px;
+  font-size:16px;
   cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .passActions{
   display:flex;
   gap:10px;
-  margin-top:8px;
+  margin-top:10px;
 }
 
 .passActions button{
