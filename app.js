@@ -677,13 +677,10 @@ function closePassModal(){
   document.getElementById("passModal").style.display = "none";
 }
 
-/* ojo mostrar/ocultar */
-document.addEventListener("click", e=>{
-  if(e.target.id === "toggleEye"){
-    const inp = document.getElementById("passInput");
-    inp.type = inp.type === "password" ? "text" : "password";
-  }
-});
+function togglePassEye(){
+  const inp = document.getElementById("passInput");
+  inp.type = inp.type === "password" ? "text" : "password";
+}
 
 /* botón aceptar */
 document.addEventListener("click", e=>{
