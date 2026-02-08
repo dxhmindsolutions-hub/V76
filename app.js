@@ -14,12 +14,23 @@ const viewTicketBtn = document.getElementById("viewTicketBtn");
 /* ===== MODO EDICIÓN ===== */
 let editMode = false;
 function toggleEditMode(){
-  editMode = !editMode;
-  if(editButtons) editButtons.style.display = editMode ? "flex" : "none";
-  addItemBtn.style.display = editMode ? "block" : "none";
-  editBtn.textContent = editMode ? "↩️ Volver" : "✏️ Editar";
+  if(!editMode){
+    openPassModal();
+  } else {
+    editMode = false;
+    document.getElementById("editButtons").style.display = "none";
+    document.getElementById("editBtn").textContent = "✏️ Editar";
+    render();
+  }
+}
+
+function activateEditMode(){
+  editMode = true;
+  document.getElementById("editButtons").style.display = "flex";
+  document.getElementById("editBtn").textContent = "🔒 Salir";
   render();
 }
+
 
 /* ===== CATEGORÍAS ===== */
 const categories = [
@@ -651,6 +662,42 @@ function removeProvider(itemIndex, supplierIndex){
   items[itemIndex].suppliers.splice(supplierIndex,1);
   render();
 }
+
+/* ===== PASSWORD MODO EDIT ===== */
+
+const EDIT_PASS = "1234";   // ← cambia la clave
+
+function openPassModal(){
+  const m = document.getElementById("passModal");
+  document.getElementById("passInput").value = "";
+  m.style.display = "flex";
+}
+
+function closePassModal(){
+  document.getElementById("passModal").style.display = "none";
+}
+
+/* ojo mostrar/ocultar */
+document.addEventListener("click", e=>{
+  if(e.target.id === "toggleEye"){
+    const inp = document.getElementById("passInput");
+    inp.type = inp.type === "password" ? "text" : "password";
+  }
+});
+
+/* botón aceptar */
+document.addEventListener("click", e=>{
+  if(e.target.id === "passOk"){
+    const v = document.getElementById("passInput").value;
+    if(v === EDIT_PASS){
+      closePassModal();
+      activateEditMode();
+    } else {
+      alert("Contraseña incorrecta");
+    }
+  }
+});
+
 
 /* ===== VERSIONES ===== */
 
