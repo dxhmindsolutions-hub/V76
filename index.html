@@ -452,23 +452,21 @@ strong {
     </div>
   </div>
 
-  <!-- MODAL PASSWORD EDIT -->
+<!-- MODAL PASSWORD EDIT -->
 <div id="passModal" class="modal">
-  <div class="box">
+  <div class="box passBox">
     <h3>Modo edición</h3>
 
-    <div style="position:relative;">
+    <div class="passField">
       <input id="passInput" type="password" placeholder="Contraseña">
-      <span onclick="togglePassEye()"
-  style="position:absolute; right:12px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:18px;">
-  👁️
-</span>
-
-
-    <div>
-      <button id="passOk">Entrar</button>
-      <button onclick="closePassModal()" id="cancel">Cancelar</button>
+      <button type="button" class="eyeBtn" onclick="togglePassEye()">👁️</button>
     </div>
+
+    <div class="passActions">
+      <button class="btnPrimary" onclick="checkPassword()">Entrar</button>
+      <button class="btnDanger" onclick="closePassModal()">Cancelar</button>
+    </div>
+
   </div>
 </div>
 
@@ -529,6 +527,61 @@ strong {
     min-width: auto;     /* elimina el mínimo fijo */
   }
 }
+
+  /* ===== PASSWORD MODAL ===== */
+
+.passBox{
+  max-width:360px;
+}
+
+.passField{
+  position:relative;
+  margin-bottom:14px;
+}
+
+.passField input{
+  padding-right:44px;
+}
+
+.eyeBtn{
+  position:absolute;
+  right:6px;
+  top:50%;
+  transform:translateY(-50%);
+  width:36px;
+  height:36px;
+  border:none;
+  background:#eee;
+  border-radius:8px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.passActions{
+  display:flex;
+  gap:10px;
+  margin-top:8px;
+}
+
+.passActions button{
+  flex:1;
+  padding:12px;
+  font-size:15px;
+  border-radius:12px;
+  border:none;
+  font-weight:600;
+}
+
+.btnPrimary{
+  background:#43a047;
+  color:#fff;
+}
+
+.btnDanger{
+  background:#ff3b30;
+  color:#fff;
+}
+
 
   
 </style>
