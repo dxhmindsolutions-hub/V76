@@ -122,6 +122,26 @@ function sortItems(){
   });
 }
 
+function setCheapestSupplier(item){
+  if(!item.suppliers || item.suppliers.length === 0){
+    item.mainSupplier = 0;
+    return;
+  }
+
+  let min = item.suppliers[0].cost;
+  let idx = 0;
+
+  item.suppliers.forEach((s,i)=>{
+    if(s.cost < min){
+      min = s.cost;
+      idx = i;
+    }
+  });
+
+  item.mainSupplier = idx;
+}
+
+
 /* ===== DRAWER ===== */
 function toggleDrawer(){ drawer.classList.toggle("open"); }
 function renderDrawer(){
@@ -307,8 +327,9 @@ if(!item.note) item.note = "";
       return alert("Proveedor ya añadido");
     }
 
-    item.suppliers.push({ name, cost });
-    item.mainSupplier = item.suppliers.map(s => s.cost).indexOf(Math.min(...item.suppliers.map(s=>s.cost)));
+     item.suppliers.push({ name, cost });
+     setCheapestSupplier(item);
+
 
     if(!providers.includes(name)) providers.push(name);
 
