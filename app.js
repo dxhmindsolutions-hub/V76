@@ -203,7 +203,7 @@ function render(){
 ${editMode && (i.suppliers?.length || i.note) ? `
   <small style="display:block;color:#666;font-size:12px;margin-top:4px">
     ${i.suppliers?.[i.mainSupplier]
-      ? `💰 ${i.suppliers[i.mainSupplier].cost.toFixed(2)} €`
+      ? `💰 ${i.suppliers[i.mainSupplier].cost.toFixed(2)} €${i.suppliers[i.mainSupplier].unit ? " / " + i.suppliers[i.mainSupplier].unit : ""}
       : ""}
     ${i.suppliers?.length > 1
       ? ` · 🏭 ${i.suppliers.length} proveedores`
@@ -259,8 +259,18 @@ if(!item.note) item.note = "";
       ${providers.map(p => `<option>${p}</option>`).join("")}
     </select>
     <input id="providerNew" placeholder="o escribir proveedor nuevo">
-    <input id="providerCost" type="number" step="0.01" placeholder="Precio">
-    <button id="addProvider">➕ Añadir proveedor</button>
+   <input id="providerCost" type="number" step="0.01" placeholder="Precio">
+
+<select id="providerUnit">
+  <option value="">unidad</option>
+  <option value="kg">€/kg</option>
+  <option value="ud">€/ud</option>
+  <option value="caja">€/caja</option>
+  <option value="botella">€/botella</option>
+</select>
+
+<button id="addProvider">➕ Añadir proveedor</button>
+
 
     <p>Proveedores del artículo</p>
     <ul id="providerList"></ul>
@@ -294,7 +304,7 @@ if(!item.note) item.note = "";
   function refreshProviderList(){
     ul.innerHTML = item.suppliers.map((s,i)=>`
       <li>
-        ${s.name} — ${s.cost.toFixed(2)} €
+        ${s.name} — ${s.cost.toFixed(2)} €${s.unit ? " / " + s.unit : ""}
         <button class="remove-provider" data-index="${i}">✕</button>
       </li>
     `).join("");
@@ -319,6 +329,8 @@ if(!item.note) item.note = "";
     const newName    = m.querySelector("#providerNew").value.trim();
     const name = newName || selectName;
     const cost = parseFloat(m.querySelector("#providerCost").value);
+    const unit = m.querySelector("#providerUnit").value;
+
 
     if(!name) return alert("Selecciona o escribe proveedor");
     if(isNaN(cost)) return alert("Introduce precio válido");
@@ -327,7 +339,7 @@ if(!item.note) item.note = "";
       return alert("Proveedor ya añadido");
     }
 
-     item.suppliers.push({ name, cost });
+     item.suppliers.push({ name, cost, unit });
      setCheapestSupplier(item);
 
 
@@ -336,6 +348,8 @@ if(!item.note) item.note = "";
     m.querySelector("#providerSelect").value = "";
     m.querySelector("#providerNew").value = "";
     m.querySelector("#providerCost").value = "";
+    m.querySelector("#providerUnit").value = "";
+
 
     refreshProviderList();
   };
