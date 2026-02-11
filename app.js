@@ -47,6 +47,7 @@ const categories = [
   "Limpieza",
   "Congelados",
   "Asiático",
+  "Tentempiés",
   "Conservas",
   "Aceite, especias y salsas",
   "Otros"
@@ -67,6 +68,7 @@ const categoryIVA = {
   "Limpieza": 21,
   "Congelados": 10,
   "Asiático": 10,
+  "Tentempiés": 10,
   "Conservas": 10,
   "Aceite, especias y salsas": 10,
   "Otros": 21
