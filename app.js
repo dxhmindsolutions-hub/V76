@@ -203,8 +203,9 @@ function render(){
 ${editMode && (i.suppliers?.length || i.note) ? `
   <small style="display:block;color:#666;font-size:12px;margin-top:4px">
     ${i.suppliers?.[i.mainSupplier]
-      ? `💰 ${i.suppliers[i.mainSupplier].cost.toFixed(2)} €${i.suppliers[i.mainSupplier].unit ? " / " + i.suppliers[i.mainSupplier].unit : ""}
-      : ""}
+  ? `💰 ${i.suppliers[i.mainSupplier].cost.toFixed(2)} €${i.suppliers[i.mainSupplier].unit ? " / " + i.suppliers[i.mainSupplier].unit : ""}`
+  : ""}
+
     ${i.suppliers?.length > 1
       ? ` · 🏭 ${i.suppliers.length} proveedores`
       : ""}
